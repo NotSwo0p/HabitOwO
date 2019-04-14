@@ -1,1 +1,1 @@
-worker: node bot.js Leaguehalla
+worker: node bot.js
