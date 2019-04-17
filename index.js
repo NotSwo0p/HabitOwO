@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
-const botconfig = require("./botconfig.json");
-const YTDL = require("ytdl-core"); 
+const botconfig = require("./botconfig.json"); 
 const bot = new Discord.Client();
 const BOT_TOKEN = 'NTQ4ODM0NzA5MTg3MDY3OTA0.D1LWVg.iezjm6_eB00BbZy7It8VAE7JAXw';
 
@@ -389,24 +388,6 @@ break;
 
 
 //Voice and music commands
-case 'play':
-if(!args[1]) return message.channel.send("Provide a link to play");
-if(!message.member.voiceChannel) return message.channel.send("You must join a voice channel first");
-
-let validate = await YTDL.getInfo(args[1]);
-let connection = await message.member.voiceChannel.join();
-let dispatcher = await connection.playStream(YTDL(args[1], {filter: "audioonly"}));
-break;
-
-
-
-case 'leave':
-if(!message.member.guild.me.voiceChannel) return message.channel.send("I'm not in a voice channel.");
-else {
-  message.member.guild.me.voiceChannel.leave();
-}
-break;
-
 
 
 
