@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const botconfig = require("./botconfig.json");
 const superagent = require("superagent");
 const YTDL = require("ytdl-core");
-const bot = new Discord.Client();
+const BOT_TOKEN = new Discord.Client();
 const token = 'NTQ4ODM0NzA5MTg3MDY3OTA0.D1LWVg.iezjm6_eB00BbZy7It8VAE7JAXw';
 
 
@@ -415,4 +415,4 @@ break;
 })
   
 
-bot.login(token);
+bot.login(BOT_TOKEN);
