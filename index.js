@@ -196,7 +196,7 @@ let args = message.content.substring(PREFIX.length).split(" ");
      case 'help':
      const CommandsEmbed = new Discord.RichEmbed()   
 
-     .addField("`Moderation commands`", true)
+     .addField("`Moderation commands`")
      .addField('**-kick**' , "(Mods And Admins Only)  a basic kick command", true)
      .addField('**-ban**' , "(Mods And Admins Only)  a basic ban command", true)
      .addField('**-purge**' , "(Mods And Admins Only)  a command that clears a specified amount of messages", true)  
@@ -211,18 +211,14 @@ let args = message.content.substring(PREFIX.length).split(" ");
      .setColor(0x581845)
      .setThumbnail(message.guild.iconURL)
 
-     .addField('`Information commands`', true)   
+     .addField('`Information commands`')   
      .addField('**-server**' , "It shows information about the server", true)
      .addField('**-card**' , "It shows informations about you in the server", true)
      .addField('**-roles**' , "A command that shoows all the assignable roles", true)
      .addField('**-social**' , "Gives you the links of LH's social media", true)
      .addField('**-avatar**', "Shows a full picture of the user's avatar/icon")
 
-     .addField("`Music commands`", true)
-     .addField('**-play', "A command to play a certain URL (audio only)", true)
-     .addField('**-leave' , "A command used to make me disconnect from a voice channel", true)
-
-     .addField("`Fun commands`", true)
+     .addField("`Fun commands`")
      .addField('**-slap**' , "A command to slap somebody", true)
      .addField('**-random**' , "You ask a question and the bot responds randomly by Yes or No", true)   
      .addField('**-meme**' , "A random meme generator command", true)
