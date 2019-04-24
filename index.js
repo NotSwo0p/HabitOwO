@@ -47,9 +47,6 @@ if(!message.content.startsWith(PREFIX)) return;
 
 
 
-var Region = 'EU';
-
-
 
 let args = message.content.substring(PREFIX.length).split(" ");
 
@@ -96,9 +93,10 @@ let args = message.content.substring(PREFIX.length).split(" ");
         .addField('Owner' , message.guild.owner)
         .addField('Member Count' , message.guild.memberCount)
         .addField('Creation Date' , message.guild.createdAt)
-        .addField('Region' , Region) 
+        .addField('Region' , "EU") 
         .addField('Roles' , message.guild.roles.size)
         .addField('Bots' , message.guild.members.filter(member => member.user.bot === true).size)
+        .addField('Channels' , message.guild.channels.size)
         .addField('Server ID' , "538869462808395787")
         .addField('Verification level' , serverlevel[message.guild.verificationLevel])
         .setColor(0x581845)
@@ -146,14 +144,14 @@ let args = message.content.substring(PREFIX.length).split(" ");
         //command to change a certain user's username
         case 'setnickname':
         let Nuser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        let NickReason = args[3];
+        let NickReason = args.slice(2).join(" ");
 
         if(!Nuser) return message.reply('Please mention a user')
         if(!NickReason) return message.reply('Mention the new nickname')
         if(!Nuser) return message.channel.send("Can't find the user")
         if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send("No can do pal!");       
         Nuser.setNickname(NickReason);
-        message.channel.send('The User nickname has been changed');     
+        message.channel.send('The user nickname has been changed');     
         break;
 
         
@@ -190,29 +188,48 @@ let args = message.content.substring(PREFIX.length).split(" ");
        break;
 
 
+       
+
+
 
      //The Help Command
      case 'help':
      const CommandsEmbed = new Discord.RichEmbed()   
 
-     .setTitle('Command List')
-     .addField('-server' , "It shows information about the server", true)
-     .addField('-card' , "It shows informations about you in the server", true)
-     .addField('-slap' , "A command to slap somebody", true)
-     .addField('-random' , "You ask a question and the bot responds randomly by Yes or No", true)
-     .addField('-hello' , "A command to check if the bot is online/working or not", true)
-     .addField('-meme' , "A random meme generator command", true)
+     .addField("`Moderation commands`", true)
+     .addField('**-kick**' , "(Mods And Admins Only)  a basic kick command", true)
+     .addField('**-ban**' , "(Mods And Admins Only)  a basic ban command", true)
+     .addField('**-purge**' , "(Mods And Admins Only)  a command that clears a specified amount of messages", true)  
+     .addField('**-setnickname**' , "(Mods And Admins Only)  a command that changes a user's nickname", true) 
+     .addField('**-mute**' , "(Mods And Admins Only)  a command that prevents a user from typing on text channels", true)
+     .addField('**-unmute**' , "(Mods And Admins Only)  a command used to let a muted user type on text channels again", true)
+     .addField('**-warn**' , "(Mods And Admins Only)  a command that gives a warn to a specefied member", true) 
+     .addField('**-report**' , "A command to report a user", true)  
+     .addField('**-announce**' , "(Head admins only) a command that announces something in a mentioned channel", true)
+     .addField('**-vote**' , "A command to suggest something new for the server", true)
+     
      .setColor(0x581845)
-     .setThumbnail(message.guild.iconURL)   
-     .addField('-kick' , "(Mods And Admins Only)  a basic kick command", true)
-     .addField('-ban' , "(Mods And Admins Only)  a basic ban command", true)
-     .addField('-purge' , "(Mods And Admins Only)  a command that clears an amount of messages", true)   
-     .addField('-mute' , "(Mods And Admins Only)  a command that prevents a user from typing on text channels", true)
-     .addField('-unmute' , "(Mods And Admins Only)  a command used to let a muted user type on text channels again", true)
-     .addField('-warn' , "(Mods And Admins Only)  a command that gives a warn to a specefied member", true) 
-     .addField('-report' , "A command to report a user", true)  
-     .addField('-announce' , "A command that announces something in a mentioned channel", true)
-     .addField('-twitch' , "Gives you the link of LH twitch channel", true)
+     .setThumbnail(message.guild.iconURL)
+
+     .addField('`Information commands`', true)   
+     .addField('**-server**' , "It shows information about the server", true)
+     .addField('**-card**' , "It shows informations about you in the server", true)
+     .addField('**-roles**' , "A command that shoows all the assignable roles", true)
+     .addField('**-social**' , "Gives you the links of LH's social media", true)
+     .addField('**-avatar**', "Shows a full picture of the user's avatar/icon")
+
+     .addField("`Music commands`", true)
+     .addField('**-play', "A command to play a certain URL (audio only)", true)
+     .addField('**-leave' , "A command used to make me disconnect from a voice channel", true)
+
+     .addField("`Fun commands`", true)
+     .addField('**-slap**' , "A command to slap somebody", true)
+     .addField('**-random**' , "You ask a question and the bot responds randomly by Yes or No", true)   
+     .addField('**-meme**' , "A random meme generator command", true)
+
+     .addField("`Test command`", true)
+     .addField('**-hello**' , "A command to check if the bot is online/working or not", true)
+     
      .setTimestamp()
      .addBlankField(true)
      .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
@@ -259,7 +276,7 @@ let args = message.content.substring(PREFIX.length).split(" ");
     case 'roles':
     let RolesEmbed = new Discord.RichEmbed()
 
-    .setTitle('**Available roles**')
+    .setTitle('`Available roles`')
     .addField('EU',"Region Role" ,true)
     .addField('NA',"Region Role", true)
     .addField('SEA',"Region Role", true)
@@ -309,8 +326,20 @@ let args = message.content.substring(PREFIX.length).split(" ");
 
 
 //Other commands
- case 'twitch':
- message.channel.send('https://www.twitch.tv/leaguehalla');
+ case 'social':
+ let SocialEmbed = new Discord.RichEmbed()
+
+ .setTitle('`Social Links:`')
+ .addField("Twitch", 'https://www.twitch.tv/leaguehalla')
+ .addField("Twitter", 'https://www.twitter.com/leaguehalla')
+ .addField("Youtube", '')
+ .setColor(0x581845)
+ .setTimestamp()
+ .addBlankField(true)
+ .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+
+ message.channel.send(SocialEmbed);
+
  break;
 
 
@@ -339,7 +368,7 @@ if(!args[1]) return message.reply('Please specify a user to slap')
 let SlappedUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 const SlapEmbed = new Discord.RichEmbed()
 
-.setAuthor(`${SlappedUser} Has been slapped !`)
+.setAuthor(`${SlappedUser.displayName} Has been slapped !`)
 .setImage('https://media1.tenor.com/images/fb17a25b86d80e55ceb5153f08e79385/tenor.gif?itemid=7919028')
 .setColor(0x581845)
 .setTimestamp()
@@ -362,33 +391,6 @@ const AvatarEmbed = new Discord.RichEmbed()
 
 message.reply('Here is your avatar', AvatarEmbed);
 break;
-
-
-
-case 'meme':
-let msg = await message.channel.send("Generating...")
-
-let {body} = await superagent
-.get('https://api-to.get-a.life/meme')
-if(!{body}) return message.channel.send('Sorry, try again !')
-let memeembed = new Discord.RichEmbed()
-
-.setColor(0x581845)
-.setTitle("`Here's a meme !`")
-.setImage(body.url)
-.setTimestamp()
-.setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
-
-message.channel.send(memeembed);
-msg.delete();
-break;
-
-
-
-
-
-//Voice and music commands
-
 
 
 }
