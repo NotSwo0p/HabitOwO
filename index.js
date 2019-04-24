@@ -227,8 +227,6 @@ let args = message.content.substring(PREFIX.length).split(" ");
      .addField('**-random**' , "You ask a question and the bot responds randomly by Yes or No", true)   
      .addField('**-meme**' , "A random meme generator command", true)
 
-     .addField("`Test command`", true)
-     .addField('**-hello**' , "A command to check if the bot is online/working or not", true)
      
      .setTimestamp()
      .addBlankField(true)
