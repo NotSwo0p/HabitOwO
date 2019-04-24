@@ -211,7 +211,7 @@ let args = message.content.substring(PREFIX.length).split(" ");
      .setColor(0x581845)
      .setThumbnail(message.guild.iconURL)
      .addBlankField(true)
-     .addField('`Information commands`, " ")   
+     .addField('`Information commands`', " ")   
      .addField('**-server**' , "It shows information about the server", true)
      .addField('**-card**' , "It shows informations about you in the server", true)
      .addField('**-roles**' , "A command that shoows all the assignable roles", true)
