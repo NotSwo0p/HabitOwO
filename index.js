@@ -14,7 +14,7 @@ bot.on('guildMemberAdd', member => {
   .setTitle("**Welcome to Habits !**")
   .setAuthor(`Welcome ${member.displayName}`, member.guild.iconURL)
   .setColor(0x581845)
-  .setDescription("Welcome to the Habits Community ! make sure to read the Rules and have fun ! ")
+  .setDescription("Welcome to the Habits School ! make sure to read the Rules and have fun ! ")
   .setThumbnail(member.guild.iconURL)
   .setTimestamp()
   .setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
@@ -235,10 +235,6 @@ let args = message.content.substring(PREFIX.length).split(" ");
      .addField('**-server**' , "It shows information about the server", true)
      .addField('**-card**' , "It shows informations about you in the server", true)
      .addField('**-avatar**', "Shows a full picture of the user's avatar/icon")
-
-     .addField("`Music commands`", true)
-     .addField('**-play', "A command to play a certain URL (audio only)", true)
-     .addField('**-leave' , "A command used to make me disconnect from a voice channel", true)
 
      .addField("`Fun commands`", true)
      .addField('**-slap**' , "A command to slap somebody", true)
