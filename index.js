@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const botconfig = require("./botconfig.json");
 const bot = new Discord.Client();
-const BOT_TOKEN = 'NTQ4ODM0NzA5MTg3MDY3OTA0.XNAh7Q.k0CYWik2Oh2ihQuVB4uxAJYQ_N8';
+const BOT_TOKEN = 'NTc1MDIxODM1NTAzMDA5Nzky.XNB5DA.l9rV7wzaZWqGHm1gweXuICXLQvo';
 
 
 //When a User Joins The Server
