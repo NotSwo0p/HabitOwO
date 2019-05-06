@@ -1,23 +1,23 @@
 const Discord = require('discord.js');
-const botconfig = require("./botconfig.json"); 
+const botconfig = require("./botconfig.json");
 const bot = new Discord.Client();
 const BOT_TOKEN = 'NTQ4ODM0NzA5MTg3MDY3OTA0.XNAh7Q.k0CYWik2Oh2ihQuVB4uxAJYQ_N8';
 
 
 //When a User Joins The Server
 bot.on('guildMemberAdd', member => {
- const Welcomechannel =  member.guild.channels.find("id" , "538873204693794847");
+ const Welcomechannel =  member.guild.channels.find("id" , "574932056019173434");
  if(!Welcomechannel) return
  else {
   
   let WelcomeEmbed = new Discord.RichEmbed()
-  .setTitle("**Welcome to Leaguehalla !**")
+  .setTitle("**Welcome to Habits !**")
   .setAuthor(`Welcome ${member.displayName}`, member.guild.iconURL)
   .setColor(0x581845)
-  .setDescription("Welcome to the Leaguehalla Community ! make sure to read the #📜-rules  and have fun ! ")
+  .setDescription("Welcome to the Habits Community ! make sure to read the Rules and have fun ! ")
   .setThumbnail(member.guild.iconURL)
   .setTimestamp()
-  .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+  .setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
 
   Welcomechannel.send(WelcomeEmbed);
  }
@@ -28,7 +28,7 @@ bot.on('guildMemberAdd', member => {
 //When Generally The Bot Becomes Online
 bot.on('ready' , () =>{
 
-    console.log('The Bot Is Alive!');
+    console.log('Habits Bot Is Alive!');
     bot.user.setStatus("online");
     bot.user.setActivity('-help', {type: "PLAYING"});
 
@@ -79,7 +79,7 @@ let args = message.content.substring(PREFIX.length).split(" ");
         .setThumbnail(message.author.avatarURL)
         .setTimestamp()
         .addBlankField(true)
-        .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+        .setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
 
         message.channel.sendEmbed(card);
         break;
@@ -103,7 +103,7 @@ let args = message.content.substring(PREFIX.length).split(" ");
         .setThumbnail(message.guild.iconURL)
         .setTimestamp()
         .addBlankField(true)
-        .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+        .setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
         
         message.channel.sendEmbed(server)
         break;
@@ -189,6 +189,26 @@ let args = message.content.substring(PREFIX.length).split(" ");
 
 
        
+       case 'vote':
+       let Voteresult = args.slice(2).join(" ");
+       let Votechannel = member.guild.channels.find('id', "");
+       if(!Voteresult) return
+       else{
+         let VoteEmbed = new Discord.RichEmbed()
+
+         .setTitle(`Vote by ${message.author.username}`)
+         .setDescription(Voteresult)
+         .setColor(0x581845)
+         .setThumbnail(message.author.avatarURL)
+         .setTimestamp()
+         .addBlankField(true)
+         .setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+
+         Votechannel.send(VoteEmbed);
+         message.react(name, "Thumbsup");
+         message.react(name, "Thumbsdown");
+       }
+       break;
 
 
 
@@ -196,7 +216,7 @@ let args = message.content.substring(PREFIX.length).split(" ");
      case 'help':
      const CommandsEmbed = new Discord.RichEmbed()   
 
-     .addField("`Moderation commands`", ".")
+     .addField("`Moderation commands`", true)
      .addField('**-kick**' , "(Mods And Admins Only)  a basic kick command", true)
      .addField('**-ban**' , "(Mods And Admins Only)  a basic ban command", true)
      .addField('**-purge**' , "(Mods And Admins Only)  a command that clears a specified amount of messages", true)  
@@ -210,23 +230,27 @@ let args = message.content.substring(PREFIX.length).split(" ");
      
      .setColor(0x581845)
      .setThumbnail(message.guild.iconURL)
-     .addBlankField(true)
-     .addField('`Information commands`', ".")   
+
+     .addField('`Information commands`', true)   
      .addField('**-server**' , "It shows information about the server", true)
      .addField('**-card**' , "It shows informations about you in the server", true)
-     .addField('**-roles**' , "A command that shoows all the assignable roles", true)
-     .addField('**-social**' , "Gives you the links of LH's social media", true)
      .addField('**-avatar**', "Shows a full picture of the user's avatar/icon")
-     .addBlankField(true)
-     .addField("`Fun commands`", ".")
+
+     .addField("`Music commands`", true)
+     .addField('**-play', "A command to play a certain URL (audio only)", true)
+     .addField('**-leave' , "A command used to make me disconnect from a voice channel", true)
+
+     .addField("`Fun commands`", true)
      .addField('**-slap**' , "A command to slap somebody", true)
      .addField('**-random**' , "You ask a question and the bot responds randomly by Yes or No", true)   
-     .addField('**-meme**' , "A random meme generator command", true)
+     
 
+     .addField("`Test command`", true)
+     .addField('**-hello**' , "A command to check if the bot is online/working or not", true)
      
      .setTimestamp()
      .addBlankField(true)
-     .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+     .setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
 
      message.author.sendEmbed(CommandsEmbed)
      message.reply('Check your DMs');
@@ -266,37 +290,6 @@ let args = message.content.substring(PREFIX.length).split(" ");
       break;
    }
 
-
-    case 'roles':
-    let RolesEmbed = new Discord.RichEmbed()
-
-    .setTitle('`Available roles`')
-    .addField('EU',"Region Role" ,true)
-    .addField('NA',"Region Role", true)
-    .addField('SEA',"Region Role", true)
-    .addField('AUS',"Region Role", true)
-    .addField('BRZ',"Region Role", true)
-    .addField('Tin',"Rank Role", true)
-    .addField('Bronze',"Rank Role", true)
-    .addField('Silver',"Rank Role", true)
-    .addField('Gold',"Rank Role", true)
-    .addField('Platinum',"Rank Role", true)
-    .addField('Diamond',"Rank Role", true)
-    .addField('+2200',"Rank Role", true)
-    .addField('+2400',"Rank Role", true)
-    .addField('+2600',"Rank Role", true)
-    .addField('Challenges',"Activity Role", true)
-    .addField('Koths', "Activity Role", true)
-    .addField("Friday's war", "Activity Role", true)
-    .addField("Sparring", "Activity Role", true)
-    .setColor(0x581845)
-    .setTimestamp()
-    .addBlankField(true)
-    .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
-
-    message.channel.send(RolesEmbed);
-    break;
-
   
 
 
@@ -320,23 +313,6 @@ let args = message.content.substring(PREFIX.length).split(" ");
 
 
 //Other commands
- case 'social':
- let SocialEmbed = new Discord.RichEmbed()
-
- .setTitle('`Social Links:`')
- .addField("Twitch", 'https://www.twitch.tv/leaguehalla')
- .addField("Twitter", 'https://www.twitter.com/leaguehalla')
- .addField("Youtube", '')
- .setColor(0x581845)
- .setTimestamp()
- .addBlankField(true)
- .setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
-
- message.channel.send(SocialEmbed);
-
- break;
-
-
 
 
 case 'hello':
@@ -367,7 +343,7 @@ const SlapEmbed = new Discord.RichEmbed()
 .setColor(0x581845)
 .setTimestamp()
 .addBlankField(true)
-.setFooter('LH Bot created by Swo0p#0034', bot.user.displayAvatarURL)
+.setFooter('Bot created by Swo0p#0034', bot.user.displayAvatarURL)
 
 message.channel.sendEmbed(SlapEmbed)
 break;
@@ -387,8 +363,23 @@ message.reply('Here is your avatar', AvatarEmbed);
 break;
 
 
+
+
+
+
+
 }
 })
   
+
+
+
+
+
+
+
+
+
+
 
 bot.login(BOT_TOKEN);
