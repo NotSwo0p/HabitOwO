@@ -1,2 +1,2 @@
-# Leaguehalla-Bot
+# HabbitOwO
 a managing bot
